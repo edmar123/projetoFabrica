@@ -1,12 +1,12 @@
-- Tecnologias
+Tecnologias
 -
-- Back-end:
+Back-end:
 -
 - Sistema de Logs (Log4J 2)
 - Ecossistema Spring
 - Autenticação com Spring Security + JWT
 
-- Front-end:
+Front-end:
 -
 - Thymeleaf
 - Bootstrap 4
