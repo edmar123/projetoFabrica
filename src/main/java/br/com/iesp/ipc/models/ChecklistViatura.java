@@ -8,10 +8,9 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
-
 //@Table(name="tab_checkListViatura")
+@Data  
 @MappedSuperclass
-@Data
 public class ChecklistViatura {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
