@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 @Entity
-@Data
+@Data  
 @Table(name="tab_checkListViatura")
 public class ChecklistViatura {
 	@Id
