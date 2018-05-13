@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
+import br.com.iesp.ipc.enums.TipoUsuarioEnum;
 import lombok.Data;
 
 /**
@@ -48,7 +49,7 @@ public class Usuario {
 	private Date validadeCarteiraHabilitacao;
 	
 	@Column
-	private char tipoUsuario;
+	private TipoUsuarioEnum tipoUsuario;
 	
 	@Column
 	@Email
