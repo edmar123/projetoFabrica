@@ -1,6 +1,6 @@
 package br.com.iesp.ipc.enums;
 
-public enum TipoViatura {
+public enum TipoViaturaEnum {
 	COMUML,
 	TRANSPORTE_DE_CORPOS
 }

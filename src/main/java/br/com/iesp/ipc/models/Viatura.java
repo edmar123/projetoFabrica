@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import br.com.iesp.ipc.enums.TipoViatura;
+import br.com.iesp.ipc.enums.TipoViaturaEnum;
 import lombok.Data;
 
 @Data
@@ -34,7 +34,7 @@ public class Viatura {
 	private String VTR;
 	@Enumerated(EnumType.STRING)
 	@Column
-	private TipoViatura tipoViatura;
+	private TipoViaturaEnum tipoViatura;
 	@OneToOne(mappedBy="tab_viatura")
 	private ChecklistViatura  checklistViatura;
 	
