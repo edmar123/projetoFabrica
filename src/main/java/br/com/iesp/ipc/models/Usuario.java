@@ -10,8 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.iesp.ipc.enums.TipoUsuarioEnum;
 import lombok.Data;
@@ -54,5 +57,10 @@ public class Usuario {
 	@Column
 	@Email
 	private String email;
+	
+	@PrePersist
+	public void pre() {
+		this.setSenhaUsuario(new BCryptPasswordEncoder().encode(this.getSenhaUsuario()));
+	}
 	
 }

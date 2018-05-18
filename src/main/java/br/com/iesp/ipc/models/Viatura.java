@@ -15,27 +15,34 @@ import lombok.Data;
 @Data
 @Entity(name="tab_viatura")
 public class Viatura {
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
+	
 	@Column
 	private String marca;
+	
 	@Column
 	private String modelo;
+	
 	@Column
 	private String placa;
+	
 	@Column
 	private String cor;
+	
 	@Column
 	private Long quilometragem;
+	
 	@Column
 	private String prefixo;
+	
 	@Column(unique = true)
 	private String VTR;
+	
 	@Enumerated(EnumType.STRING)
 	@Column
 	private TipoViaturaEnum tipoViatura;
-	@OneToOne(mappedBy="tab_viatura")
-	private ChecklistViatura  checklistViatura;
 	
 }
