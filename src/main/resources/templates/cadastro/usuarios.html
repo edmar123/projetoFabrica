@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Cadastro de Usuário</title>
+</head>
+<body>
+	<div align="center">
+		<form th:action="@{/usuarios/salvar}" method="POST" th:object="${usuario}">
+			<input type="hidden" name="id" th:field="*{id}" />
+		
+			<input type="text" name="nomeCompleto" placeholder="Nome" th:field="*{nomeCompleto}" />
+			
+			<br>
+			
+			<input type="text" name="nomeUsuario" placeholder="Usuário" th:field="*{nomeUsuario}" />
+			
+			<br>
+			
+			<input type="password" name="senhaUsuario" placeholder="Senha" th:field="*{senhaUsuario}" />
+			
+			<br>
+			
+			<input type="submit" value="Salvar" />
+		</form>
+		
+		<br>
+		
+		<a href="/usuarios/listar">Listar</a>
+	</div>
+</body>
+</html>
