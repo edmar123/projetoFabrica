@@ -7,7 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import br.com.iesp.ipc.enums.TipoViaturaEnum;
 import lombok.Data;
@@ -18,11 +19,13 @@ public class Viatura {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
+	@NotBlank(message="este campo n pode ser vazio")
 	@Column
 	private String marca;
 	@Column
 	private String modelo;
 	@Column
+	@Pattern(regexp= "[A-Z]{3}-[0-9]{4}")
 	private String placa;
 	@Column
 	private String cor;
@@ -35,7 +38,6 @@ public class Viatura {
 	@Enumerated(EnumType.STRING)
 	@Column
 	private TipoViaturaEnum tipoViatura;
-	@OneToOne(mappedBy="tab_viatura")
-	private ChecklistViatura  checklistViatura;
+
 	
 }
