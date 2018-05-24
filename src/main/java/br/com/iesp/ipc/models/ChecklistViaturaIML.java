@@ -13,21 +13,15 @@ import lombok.Data;
 @Data
 @Table(name="tab_checkListViaturaIML")
 public class ChecklistViaturaIML extends ChecklistViatura {
+	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
+	
 	@Column
 	private String pranchaColetaCorpo;
+	
 	@OneToOne
-	private ChecklistViatura  checklistViatura;
-	
-	
-
-
-
-
-
-
-
+	private ChecklistViatura checklistViatura;
 	
 }

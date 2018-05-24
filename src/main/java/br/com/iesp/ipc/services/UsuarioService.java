@@ -36,4 +36,8 @@ public class UsuarioService implements Serializable {
 		this.repository.deleteById(id);
 	}
 	
+	public Usuario getOne(Long id) {
+		return this.repository.getOne(id);
+	}
+	
 }

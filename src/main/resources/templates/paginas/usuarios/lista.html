@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Lista de Usuários</title>
+</head>
+<body>
+	<div align="center">
+		<table>
+			<tr>
+				<td>ID</td>
+				<td>Nome</td>
+				<td>Usuário</td>
+				<td colspan="2">Ações</td>
+			</tr>
+			
+			<div th:each="usuario : ${listaUsuarios}">
+				<tr>
+					<td th:text="${usuario.id}"></td>
+					<td th:text="${usuario.nomeCompleto}"></td>
+					<td th:text="${usuario.nomeUsuario}"></td>
+					<td><a th:href="@{/usuarios/editar/{id}(id=${usuario.id})}">Editar</a></td>
+					<td><a th:href="@{/usuarios/excluir/{id}(id=${usuario.id})}">Excluir</a></td>
+				</tr>
+			</div>
+		</table>
+		
+		<br>
+		
+		<a href="/usuarios/cadastro">Cadastrar novo</a>
+	</div>
+</body>
+</html>
