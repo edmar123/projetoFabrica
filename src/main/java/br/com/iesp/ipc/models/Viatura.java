@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-
-import br.com.iesp.ipc.enums.TipoViaturaEnum;
 import lombok.Data;
 
 @Data
@@ -35,9 +33,5 @@ public class Viatura {
 	private String prefixo;
 	@Column(unique = true)
 	private String VTR;
-	@Enumerated(EnumType.STRING)
-	@Column
-	private TipoViaturaEnum tipoViatura;
-
 	
 }
