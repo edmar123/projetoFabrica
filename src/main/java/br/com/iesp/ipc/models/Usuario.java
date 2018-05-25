@@ -18,6 +18,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.iesp.ipc.enums.TipoUsuarioEnum;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author Cayo Hollanda (http://www.github.com/cayohollanda)

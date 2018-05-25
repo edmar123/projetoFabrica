@@ -20,7 +20,6 @@ public class Viatura {
 	private Long id;
 
 	@NotBlank(message="este campo n pode ser vazio")
-
 	@Column
 	private String marca;
 	
