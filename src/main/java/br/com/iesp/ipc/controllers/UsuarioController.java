@@ -56,19 +56,19 @@ public class UsuarioController {
 		return mv;
 	}
 	
-	@GetMapping("/listar")
+	@GetMapping("listar")
 	public ModelAndView listar() {
 		return new ModelAndView(LISTA_USUARIOS).addObject("listaUsuarios", this.usuarioService.findAll());
 	}
 	
-	@GetMapping("/excluir/{id}")
+	@GetMapping("excluir/{id}")
 	public ModelAndView excluir(@PathVariable Long id) {
 		this.usuarioService.remove(id);
 		
 		return new ModelAndView(LISTA_USUARIOS).addObject("listaUsuarios", this.usuarioService.findAll());
 	}
 	
-	@GetMapping("/editar/{id}")
+	@GetMapping("editar/{id}")
 	public ModelAndView editar(@PathVariable Long id) {
 		Usuario usuario = this.usuarioService.getOne(id);
 		

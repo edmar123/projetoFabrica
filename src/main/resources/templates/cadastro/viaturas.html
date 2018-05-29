@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Cadastro de Viaturas</title>
+</head>
+<body>
+	<div align="center">
+		<form th:action="@{/viaturas/salvar}" method="POST" th:object="${viatura}">
+		
+			<div th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+				
+			<div th:if="${#fields.hasAnyErrors()}">
+				<div th:each="detailedError : ${#fields.detailedErrors()}">
+					<span th:text="${detailedError.message}"></span>
+				</div>
+			</div>
+			
+		
+			<input type="hidden"  th:field="*{id}" />
+			
+			<label th:classappend="${#fields.hasErrors('tipoViaturaEnum')}? 'has-error'"> Tipo de viatura:</label>
+				<label th:each="viatura: ${tipoViaturas}"> 
+					<input type="radio" th:value="${viatura}" th:field="*{tipoViaturaEnum}" /> 
+					<span th:text="${viatura.descricao}"></span>
+				</label>  <br>
+			
+			<div th:classappend="${#fields.hasErrors('cor')}? 'has-error'">
+				<input type="text" placeholder="cor" th:field="*{cor}" /> <br>
+			</div>
+			
+			<div th:classappend="${#fields.hasErrors('marca')}? 'has-error'">
+				<input type="text" placeholder="marca" th:field="*{marca}" /> <br>
+			</div>
+			
+			<div th:classappend="${#fields.hasErrors('modelo')}? 'has-error'">
+				<input type="text" placeholder="modelo" th:field="*{modelo}" /> <br>
+			</div>
+			
+			<div th:classappend="${#fields.hasErrors('placa')}? 'has-error'">
+				<input type="text" placeholder="placa" th:field="*{placa}" /> <br>
+			</div>
+			
+			<div th:classappend="${#fields.hasErrors('prefixo')}? 'has-error'">
+				<input type="text" placeholder="prefixo" th:field="*{prefixo}" /> <br>
+			</div>
+			
+			<div th:classappend="${#fields.hasErrors('quilometragem')}? 'has-error'">
+				<input type="number" placeholder="quilometragem" th:field="*{quilometragem}" /> <br> 
+			</div>
+			
+			<input type="submit" value="Salvar" />
+			
+		</form> <br> 
+		
+		<a href="/viaturas/listar">Listar</a>			
+	</div>
+</body>
+</html>

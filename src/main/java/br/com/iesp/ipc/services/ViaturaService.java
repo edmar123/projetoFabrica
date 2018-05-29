@@ -12,7 +12,7 @@ public class ViaturaService {
 	@Autowired
 	private ViaturaRepository repository;
 	
-	// Método editar e salvar utilizarao esse método
+	// Método editar  utilizara esse método
 	public Viatura save(Viatura viatura) {
 		return this.repository.save(viatura);
 	}
@@ -24,4 +24,12 @@ public class ViaturaService {
 	public void remove(Long id) {
 		this.repository.deleteById(id);
 	}
+	
+	public Viatura findOne(Long id) {
+		return this.repository.getOne(id);
+	}
+	
+	
+	
+	
 }

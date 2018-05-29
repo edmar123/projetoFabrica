@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Lista de viaturas</title>
+</head>
+<body>
+	<div align="center">
+		
+		<table class="table" align="center">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Tipo de viatura</th>
+						<th>Cor</th>
+						<th>Marca</th>
+						<th>Modelo</th>
+						<th>Placa</th>
+						<th>Prefixo</th>
+						<th>Quilometragem</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="viatura : ${viaturas}">
+						<td th:text="${viatura.id}"></td>
+						<td th:text="${viatura.tipoViaturaEnum}"></td>
+						<td th:text="${viatura.cor}"></td>
+						<td th:text="${viatura.marca}"></td>
+						<td th:text="${viatura.modelo}"></td>
+						<td th:text="${viatura.placa}"></td>
+						<td th:text="${viatura.prefixo}"></td>
+						<td th:text="${viatura.quilometragem}"></td>
+						<td> 
+							<div >
+								<a th:href="@{/viaturas/deletar/{id}(id=${viatura.id})}">Excluir</a>
+								<a th:href="@{/viaturas/editar/{id}(id=${viatura.id})}">Editar</a>
+							</div>
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
+		
+	
+
+		<br> <a href="/viaturas/novaViatura">Nova viatura</a>
+	</div>
+</body>
+</html>
