@@ -40,4 +40,9 @@ public class UsuarioService implements Serializable {
 		return this.repository.getOne(id);
 	}
 	
+	public Usuario FindByNome(String nome) {
+		return this.repository.findByNomeUsuario(nome);
+	}
+	
+	
 }

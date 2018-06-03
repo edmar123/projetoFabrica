@@ -15,5 +15,5 @@ import br.com.iesp.ipc.models.Usuario;
 
 @Repository("usuarioRepository")
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-
+	Usuario findByNomeUsuario(String nome);
 }
