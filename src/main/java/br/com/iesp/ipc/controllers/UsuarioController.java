@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import br.com.iesp.ipc.models.Usuario;
 import br.com.iesp.ipc.services.UsuarioService;
 
@@ -82,17 +83,7 @@ public class UsuarioController {
 		}
 	}
 	
-	@GetMapping("alterarSenha")
-	public String alterarSenha(Model model) {
-		
-	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	        String nomeUsuario = auth.getName();
 
-	        Usuario usuarioASerAlterado = usuarioService.FindByNome(nomeUsuario);
-	        model.addAttribute("usuario", usuarioASerAlterado);
-	        
-	        return "alterarSenha";
-	}
 	
 	
 	
