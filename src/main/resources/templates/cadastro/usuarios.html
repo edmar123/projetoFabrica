@@ -10,20 +10,85 @@
 <body>
 	<div align="center">
 		<form th:action="@{/usuarios/salvar}" method="POST" th:object="${usuario}">
+		
+		<div th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+		<br>
 			<input type="hidden" name="id" th:field="*{id}" />
 		
 			<input type="text" name="nomeCompleto" placeholder="Nome" th:field="*{nomeCompleto}" />
-			
-			<br>
+		<br>
 			
 			<input type="text" name="nomeUsuario" placeholder="Usuário" th:field="*{nomeUsuario}" />
 			
-			<br>
+		<br>
 			
 			<input type="password" name="senhaUsuario" placeholder="Senha" th:field="*{senhaUsuario}" />
 			
+		<br>
+			
+		<br>
+			
+			<input type="number" name="numeroMatricula" placeholder="Matricula" th:field="*{numeroMatricula}" />
+			
+		<br>
+			
+		<br>
+			
+			<input type="text" name="lotacao" placeholder="lotacao" th:field="*{lotacao}" />
+			
+		<br>
+			
+		<br>
+			
+			<input type="text" name="orgaoEmissor" placeholder="orgâo Emissor" th:field="*{orgaoEmissor}" />
+			
+		<br>
+			
+		<br>
+			
+			<input type="text" name="uf" placeholder="UF" th:field="*{uf}" />
+			
+		<br>
+			
+		<br>
+			
+			<input type="text" name="numeroCarteiraHabilitacao" placeholder="Número da CNH" th:field="*{numeroCarteiraHabilitacao}" />
+			
+		<br>
+			
+		<br>
+			
+			<input type="date"  th:field="*{validadeCarteiraHabilitacao}"/>
+			
+		<br>
+			
+		<br>
+			
+			<input type="text" name="tipoCNH" placeholder="tipo CNH" th:field="*{tipoCNH}" />
+			
+		<br>
+			Ativo:
+			<label  for="checkbox-ativo">
+			<input type="checkbox" id="checkbox-ativo"  name="ativo" th:field="*{ativo}" th:checked="*{ativo}"/>
+		<br>
+			
+			<label >Perfil
+			<select  th:field="*{tipoUsuario} " >
+				<option th:each="tipoUsuario : ${tipoUsuarios}" 
+					th:value="${tipoUsuario}" 
+					th:text="${tipoUsuario.descricao}">
+				</option>
+			</select>	
+			</label>		
 			<br>
 			
+		<br>
+			
+			<input type="text" name="email" placeholder="Email" th:field="*{email}" />
+			
+		<br>
+			
+		
 			<input type="submit" value="Salvar" />
 		</form>
 		

@@ -28,18 +28,22 @@ public class ViaturaController {
 
 	@GetMapping("listar")
 	public ModelAndView listar() {
-		ModelAndView mv = new ModelAndView("paginas/viaturas/listarViatura");
+		ModelAndView mv = new ModelAndView("cadastro/Cadastro-de-Viaturas");
+		Viatura viatura = new Viatura();
+		
 		List<Viatura> viaturas = service.findAll();
-
+		
+		mv.addObject("tipoViaturas", Arrays.asList(TipoViaturaEnum.values()));
+		mv.addObject("viatura", viatura);
 		mv.addObject("viaturas", viaturas);
-
+		
 		return mv;
 	}
 
-	@GetMapping("novaViatura")
+	@GetMapping("cadastro")
 	public ModelAndView adicionar(Viatura viatura) {
 		
-		ModelAndView mv = new ModelAndView("cadastro/viaturas");
+		ModelAndView mv = new ModelAndView("cadastro/Cadastro-de-Viaturas");
 		mv.addObject("viatura", viatura);
 		mv.addObject("tipoViaturas", Arrays.asList(TipoViaturaEnum.values()));
 		return mv;
@@ -52,12 +56,10 @@ public class ViaturaController {
 			return adicionar(viatura);
 		}
 		
-		ModelAndView mv = new ModelAndView("redirect:/viaturas/novaViatura");
-		
 		service.save(viatura);
 		
 		attributes.addFlashAttribute("mensagem", "Viatura salva com sucesso");
-		return mv;
+		return listar();
 	}
 
 	@GetMapping("deletar/{id}")

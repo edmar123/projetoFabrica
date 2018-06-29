@@ -14,6 +14,7 @@ import br.com.iesp.ipc.repositories.UsuarioRepository;
 
 /**
  * @author Cayo Hollanda (http://www.github.com/cayohollanda)
+ * @author Eddymar Soares
  * @project desenvolvimento
  */
 

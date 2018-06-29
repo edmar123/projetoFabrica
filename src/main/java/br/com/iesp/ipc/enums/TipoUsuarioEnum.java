@@ -9,6 +9,17 @@ package br.com.iesp.ipc.enums;
  */
 public enum TipoUsuarioEnum {
 
-	COMUM, ADMINISTRADOR
+	COMUM("Usuário comum"),
+    ADMINISTRADOR("Usuário administrador");
+	
+	private String descricao;
+	
+	TipoUsuarioEnum(String descricao){
+		this.descricao = descricao;
+	}
+	
+	public String getDescricao() {
+		return this.descricao;
+	}
 	
 }

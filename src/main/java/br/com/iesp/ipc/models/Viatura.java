@@ -42,9 +42,6 @@ public class Viatura {
 	@Length(min=3, max=20, message="O campo cor não pode ser vazio")
 	private String cor;
 	
-	@NotNull(message="o campo quilometragem não pode ser vazio")
-	@Column()
-	private Long quilometragem;
 	
 	@Column
 	@Length(min=3, max=20, message="O campo prefixo não pode ser vazio")
