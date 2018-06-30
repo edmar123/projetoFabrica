@@ -95,7 +95,7 @@
 					<li class="active"><a th:href="@{/viaturas/listar}"
 						class="menu-toggle"> <span>Viaturas</span>
 					</a></li>
-					<li><a th:href="@{/usuarios/cadastro}" class="menu-toggle">
+					<li><a th:href="@{/usuarios/listar}" class="menu-toggle">
 
 							<span>Usuários</span>
 					</a></li>
@@ -108,7 +108,7 @@
 			<!-- Footer -->
 			<div class="legal">
 				<div class="copyright">
-					&copy; 2018 - 2019 <a href="Tela-Principal.html">Administrador
+					&copy; 2018 - 2019 <a th:href="@{/}">Administrador
 						- Controle </a>.
 				</div>
 				<div class="version">
@@ -248,6 +248,8 @@
 												<th>Modelo</th>
 												<th>Placa</th>
 												<th>Prefixo</th>
+												<th>Ação</th>
+												
 
 
 											</tr>
@@ -258,6 +260,7 @@
 												<th>Modelo</th>
 												<th>Placa</th>
 												<th>Prefixo</th>
+												<th>Ação</th>
 
 											</tr>
 										</tfoot>
@@ -270,7 +273,7 @@
 
 												<td class="actions">
 												<a class="btn btn-warning btn-xs"
-													th:href="@{/viaturas/editar/{id}(id=${viatura.id})}" data-toggle="modal" data-target="#myModal02">Editar</a>
+													th:href="@{/viaturas/editar/{id}(id=${viatura.id})}" >Editar</a>
 
 													<!-- Modal -->
 													<div class="modal fade" id="myModal02" role="dialog">
@@ -384,8 +387,8 @@
 																<div class="modal-body">
 																	<div class="container-fluid">
 
-																		<form th:action="@{/cancelar}"
-																			class="px-4 py-3 rounded mx-auto" method="POST">
+																		<form th:action="@{/viaturas/listar}"
+																			class="px-4 py-3 rounded mx-auto" method="GET">
 
 																			<h2>
 																				<p>Você realmente deseja exlui-lo da lista?</p>

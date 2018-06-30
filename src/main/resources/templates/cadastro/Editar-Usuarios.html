@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Administrador - Controle de Viaturas</title>
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/imgs/favicon.ico" >
+    
+   <!-- Google Fonts -->
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/bootstrap/css/tela-login.css" rel="stylesheet">
+<!-- Bootstrap Core Css -->
+<link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!-- Waves Effect Css -->
+<link href="/plugins/node-waves/waves.css" rel="stylesheet" />
+
+<!-- Animation Css -->
+<link href="/plugins/animate-css/animate.css" rel="stylesheet" />
+
+<!-- JQuery DataTable Css -->
+<link
+	href="/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- Custom Css -->
+<link href="/bootstrap/css/style.css" rel="stylesheet">
+
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="/bootstrap/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde Por Favor...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="Tela-Principal.html">Administrador - Controle de Viaturas</a>
+            </div>
+
+            
+            
+            
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="/imgs/user.png" width="48" height="48" alt="User" />
+                </div>
+                
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MENU DE NAVEGAÇÃO</li>
+                    <li>
+                        <a th:href="@{/}">
+                            
+                           <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    <li class="active">
+                        <a th:href="@{/viaturas/listar}" class="menu-toggle">
+                         
+                            <span>Viaturas</span>
+                        </a>
+                        
+                        </li>
+                      <li >
+                        <a th:href="@{/usuarios/listar}" class="menu-toggle">
+                         
+                            <span>Usuários</span>
+                        </a>
+                        
+                        </li>
+                        <li >
+                        <a href="#" class="menu-toggle">
+                         
+                            <span>Sair</span>
+                        </a>
+                        
+                        </li>
+                          
+                        </ul>
+                    </div>
+                    <!-- #Menu -->
+                    <!-- Footer -->
+                    <div class="legal">
+                        <div class="copyright">
+                            &copy; 2018 - 2019 <a th:href="@{/}">  Administrador - Controle </a>.
+                        </div>
+                        <div class="version">
+                            <b>Version: </b> 1.0.0
+                        </div>
+                    </div>
+                    <!-- #Footer -->
+                    
+                    <!-- #END# Right Sidebar -->
+                </section>
+
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="block-header">
+                          
+                         
+                            <!-- #END# Basic Examples -->
+                            <!-- Exportable Table -->
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h2 align="center">
+                                              Atualizar Cadastro De Usuarios
+                                            </h2>
+                                          
+
+                                        
+
+ <!-- Modal -->
+    
+                                                          <div class="modal-body">
+                                                           <div class="col-md-6 col-md-offset-3" >
+
+                                               				<form th:action="@{/usuarios/salvar}"
+																th:object="${usuario}" class="px-4 py-3 rounded mx-auto"
+																method="POST">
+
+																<div align="center" class="img-logo">
+																	<img src="/imgs/logo-policia.png">
+																</div>
+																<h3 class="mt-2" align="center">Controle IPC</h3>
+																<h5 class="mt-2" align="center">Atualizar 
+																	Usuário</h5>
+																<div class="form-group">
+
+																	<input type="hidden" name="id" th:field="*{id}" />
+
+																	<div class="form-group">
+																		<label for="nomeCompleto">Nome Completo</label> <input
+																			th:field="*{nomeCompleto}" type="text"
+																			name="nomeCompleto" class="form-control"
+																			id="nomeCompleto" placeholder="Exemplo: Jose Silva"
+																			maxlength="100" minlength="2" required
+																			oninvalid="setCustomValidity('Por favor preencha este campo ')">
+																	</div>
+
+																	<div class="form-group">
+																		<label for="nomeUsuario">Nome do Usuário</label> <input
+																			th:field="*{nomeUsuario}" type="text"
+																			name="nomeUsuario" class="form-control"
+																			id="nomeUsuario" placeholder="Exemplo: Jose Silva"
+																			maxlength="100" minlength="2" required
+																			oninvalid="setCustomValidity('Por favor preencha este campo ')">
+																	</div>
+
+																	<div class="form-group">
+																		<label for="senhaUsuario">Senha do Usuário</label> 
+																		<input
+																			th:field="*{senhaUsuario}" type="password"
+																			minlength="8" name="senhaUsuario"
+																			class="form-control" id="senhaUsuario"
+																			placeholder="********" required
+																			oninvalid="setCustomValidity('Por favor, preencha a senha doUsuario')" />
+																	</div>
+
+																	<div class="form-group">
+																		<label for="numeroMatricula">Numero da
+																			Matrícula </label> <input type="number"
+																			th:field="*{numeroMatricula}" name="numeroMatricula"
+																			class="form-control" id="numeroMatricula"
+																			placeholder="Exemplo: 832140" required minlength="2">
+																	</div>
+
+																	<label for="lotacao">Lotação</label> <input type="text"
+																		th:field="*{lotacao}" name="lotacao"
+																		class="form-control" id="lotacao"
+																		placeholder="Exemplo: lotacao" maxlength="100"
+																		minlength="2" required
+																		oninvalid="setCustomValidity('Por favor preencha este campo ')">
+																</div>
+
+																<div class="form-group">
+																	<label for="cnh">Numero da Carteira de
+																		Habilitação </label> <input type="number" name="cnh"
+																		th:field="*{numeroCarteiraHabilitacao}"
+																		class="form-control" id="cnh"
+																		placeholder="Exemplo: 28999787241" required
+																		minlength="5">
+																</div>
+
+
+																<div class="form-group">
+																	<label for="orgaoEmissor">Órgão Emissor</label> <input
+																		th:field="*{orgaoEmissor}" type="text"
+																		name="orgaoEmissor" class="form-control"
+																		id="orgaoEmissor" placeholder="Exemplo: SSD"
+																		maxlength="100" minlength="2" required
+																		oninvalid="setCustomValidity('Por favor preencha este campo ')">
+																</div>
+
+																<div class="form-group">
+																	<label for="uf">UF de Origem</label> <input type="text"
+																		th:field="*{uf}" name="uf" class="form-control"
+																		id="uf" placeholder="Exemplo: Paraiba" maxlength="100"
+																		minlength="2" required
+																		oninvalid="setCustomValidity('Por favor preencha este campo ')">
+																</div>
+
+																<div class="form-group">
+																	<label for="validade">Validade da Carteira de
+																		Habilitação</label> <input type="date" name="validade"
+																		th:field="*{validadeCarteiraHabilitacao}"
+																		class="form-control" id="validade"
+																		placeholder="Exemplo: 09/12/2028" required
+																		oninvalid="setCustomValidity('Por favor preencha este campo ')">
+																</div>
+
+																<div class="form-group">
+																	<label for="tipoCnh">Tipo da Carteira de
+																		Habilitação</label> <input type="text" name="tipoCnh"
+																		th:field="*{tipoCNH}" class="form-control"
+																		id="tipoCnh" placeholder="Exemplo: A/B"
+																		maxlength="100" minlength="2" required
+																		oninvalid="setCustomValidity('Por favor preencha este campo ')">
+																</div>
+
+																<div class="form-group">
+																	<label for="email">E-mail</label> <input type="email"
+																		th:field="*{email}" name="email" class="form-control"
+																		id="email" placeholder="Exemplo: Usuário@gmail.com"
+																		required
+																		oninvalid="setCustomValidity('Por favor preencha este campo ')">
+																</div>
+
+
+																<div class="form-group">
+																	<label for="tipoUsuario">Tipo de Usuário</label> <select
+																		name="tipoUsuario" class="form-control"
+																		id="tipoUsuario" th:field="*{tipoUsuario}">
+																		<option th:each="tipoUsuario : ${tipoUsuarios}"
+																			th:value="${tipoUsuario}"
+																			th:text="${tipoUsuario.descricao}"></option>
+																	</select>
+																</div>
+
+							                                  	<div class="form-group">
+				                                                      <label for="ativo">Ativo</label>
+				
+				                                                      <select name="ativo" th:field="*{ativo}" class="form-control" id="ativo" required>
+				                                                        <option value="sim">SIM</option>
+				                                                        <option value="nao">NAO</option>
+				                                                    </select>
+				                                                </div>
+
+																<button type="submit" class="btn btn-primary"
+																	onclick="valida_vtr()">Alterar</button>
+																<button type="reset" class="btn btn-primary">Limpar</button>
+																<div class="dropdown-divider"></div>
+															</form>
+														</div>
+													</div>
+                                    
+                              </div>
+                              
+                          </div>
+                      </div>
+
+<!-- Jquery Core Js -->
+	<script src="/plugins/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core Js -->
+	<script src="/plugins/bootstrap/js/bootstrap.js"></script>
+
+
+	<!-- Slimscroll Plugin Js -->
+	<script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="/plugins/node-waves/waves.js"></script>
+
+	<!-- Jquery DataTable Plugin Js -->
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+
+	<script language="JavaScript"
+		src="/bootstrap/js/validaCadastroVTR.js"></script>
+	<script language="JavaScript" src="/bootstrap/js/jquery-1.8.3.min.js"
+		charset="utf-8"></script>
+	<script language="JavaScript"
+		src="/bootstrap/js/jquery.maskedinput.min.js"></script>
+
+	<!-- Custom Js -->
+	<script src="/bootstrap/js/admin.js"></script>
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+
+	<!-- Demo Js -->
+
+</body>
+
+</html>

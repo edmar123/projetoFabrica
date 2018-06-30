@@ -78,10 +78,9 @@ public class Usuario {
 	private String email;
 	
 	@Column
-	private boolean ativo;
+	private String ativo;
 	
-	@Transient 
-	private String MensagemAtivo;
+	
 	
 	@PrePersist
 	public void pre() {

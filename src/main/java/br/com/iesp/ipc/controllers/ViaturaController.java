@@ -41,38 +41,46 @@ public class ViaturaController {
 	}
 
 	@GetMapping("cadastro")
-	public ModelAndView adicionar(Viatura viatura) {
+	public ModelAndView enviarParaTelaCadastro(Viatura viatura) {
 		
-		ModelAndView mv = new ModelAndView("cadastro/Cadastro-de-Viaturas");
+		ModelAndView mv = new ModelAndView("/cadastro/Cadastro-de-Viaturas");
+		mv.addObject("viatura", viatura);
+		mv.addObject("tipoViaturas", Arrays.asList(TipoViaturaEnum.values()));
+		return mv;
+	}
+	
+	@GetMapping("alterar")
+	public ModelAndView enviarParaTelaAlteracao(Viatura viatura) {
+		
+		ModelAndView mv = new ModelAndView("/cadastro/Editar-Viaturas");
 		mv.addObject("viatura", viatura);
 		mv.addObject("tipoViaturas", Arrays.asList(TipoViaturaEnum.values()));
 		return mv;
 	}
 
 	@PostMapping("salvar")
-	public ModelAndView salvar(@Valid Viatura viatura, BindingResult result, RedirectAttributes attributes) {
+	public ModelAndView salvar(@Valid Viatura viatura, RedirectAttributes attributes) {
 		
-		if (result.hasErrors()) {
-			return adicionar(viatura);
-		}
+		
 		
 		service.save(viatura);
 		
 		attributes.addFlashAttribute("mensagem", "Viatura salva com sucesso");
+		
 		return listar();
 	}
 
 	@GetMapping("deletar/{id}")
-	public ModelAndView remover(@PathVariable("id") Long id) {
+	public void remover(@PathVariable("id") Long id) {
 		service.remove(id);
-		return listar();
+		
 	}
 	
 	@GetMapping("editar/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 	
 		Viatura viatura = this.service.findOne(id);
-		return adicionar(viatura);
+		return enviarParaTelaAlteracao(viatura);
 	
 	}
 

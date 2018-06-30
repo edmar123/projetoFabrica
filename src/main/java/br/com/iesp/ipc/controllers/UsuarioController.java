@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,8 +36,8 @@ import br.com.iesp.ipc.services.UsuarioService;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-	private final String CADASTRO_USUARIOS = "cadastro/usuarios";
-	private final String LISTA_USUARIOS = "paginas/usuarios/lista";
+	private final String CADASTRO_USUARIOS = "cadastro/Cadastro-de-Usuarios";
+	
 	
 	@Autowired
 	private UsuarioService usuarioService;
@@ -44,6 +45,15 @@ public class UsuarioController {
 	@GetMapping("/cadastro")
 	public ModelAndView enviarParaTelaDeCadastro(Usuario usuario) {
 		ModelAndView mv = new ModelAndView(CADASTRO_USUARIOS);
+		mv.addObject("usuario", usuario);
+		mv.addObject("tipoUsuarios", Arrays.asList(TipoUsuarioEnum.values()));
+		
+		return mv;
+	}
+	
+	@GetMapping("/alteracao")
+	public ModelAndView enviarParaTelaDeAlteracao(Usuario usuario) {
+		ModelAndView mv = new ModelAndView("cadastro/Editar-Usuarios");
 		mv.addObject("usuario", usuario);
 		mv.addObject("tipoUsuarios", Arrays.asList(TipoUsuarioEnum.values()));
 		
@@ -62,41 +72,33 @@ public class UsuarioController {
 		
 		msnSucesso.addFlashAttribute("mensagem", "usuário salvo com sucesso");
 		
-		return mv;
+		return listar();
 	}
 	
 	@GetMapping("listar")
 	public ModelAndView listar() {
-		ModelAndView mv = new ModelAndView(LISTA_USUARIOS);
-		
+		ModelAndView mv = new ModelAndView(CADASTRO_USUARIOS);
+		Usuario usuario = new Usuario();
 		List<Usuario> usuarios = this.usuarioService.findAll();
 		
-		for (Usuario usuario : usuarios ) {
-			if (usuario.isAtivo() == true) {
-				usuario.setMensagemAtivo("sim");
-			} else if (usuario.isAtivo() == false) {
-				usuario.setMensagemAtivo("não");
-			}
-		}
-		return mv.addObject("listaUsuarios", usuarios);
+		mv.addObject("usuario", usuario);
+		mv.addObject("tipoUsuarios", Arrays.asList(TipoUsuarioEnum.values()));
+		mv.addObject("listaUsuarios", usuarios);
+		return mv;
 	}
 	
 	@GetMapping("excluir/{id}")
-	public ModelAndView excluir(@PathVariable Long id) {
+	public void excluir(@PathVariable Long id) {
 		this.usuarioService.remove(id);
 		
-		return new ModelAndView(LISTA_USUARIOS).addObject("listaUsuarios", this.usuarioService.findAll());
 	}
 	
 	@GetMapping("editar/{id}")
-	public ModelAndView editar(@PathVariable Long id) {
-		Usuario usuario = this.usuarioService.getOne(id);
+	public ModelAndView editar(@PathVariable("id") Long id) {
 		
-		if(usuario != null) {
-			return enviarParaTelaDeCadastro(usuario);
-		} else { 
-			return new ModelAndView(LISTA_USUARIOS).addObject("listaUsuarios", this.usuarioService.findAll());
-		}
+		Usuario usuario = this.usuarioService.getOne(id);
+		return enviarParaTelaDeAlteracao(usuario);
+		
 	}
 	
 

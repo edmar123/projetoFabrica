@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Administrador - Controle de Viaturas</title>
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="/imgs/favicon.ico" >
+    
+   <!-- Google Fonts -->
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="/bootstrap/css/tela-login.css" rel="stylesheet">
+<!-- Bootstrap Core Css -->
+<link href="/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!-- Waves Effect Css -->
+<link href="/plugins/node-waves/waves.css" rel="stylesheet" />
+
+<!-- Animation Css -->
+<link href="/plugins/animate-css/animate.css" rel="stylesheet" />
+
+<!-- JQuery DataTable Css -->
+<link
+	href="/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css"
+	rel="stylesheet">
+
+<!-- Custom Css -->
+<link href="/bootstrap/css/style.css" rel="stylesheet">
+
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="/bootstrap/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Aguarde Por Favor...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="Tela-Principal.html">Administrador - Controle de Viaturas</a>
+            </div>
+
+            
+            
+            
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="/imgs/user.png" width="48" height="48" alt="User" />
+                </div>
+                
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list">
+                    <li class="header">MENU DE NAVEGAÇÃO</li>
+                    <li>
+                        <a th:href="@{/}">
+                            
+                           <span>Home</span>
+                        </a>
+                    </li>
+                    
+                    <li class="active">
+                        <a th:href="@{/viaturas/cadastrar}" class="menu-toggle">
+                         
+                            <span>Viaturas</span>
+                        </a>
+                        
+                        </li>
+                      <li >
+                        <a href="Cadastro-de-Usuarios.html" class="menu-toggle">
+                         
+                            <span>Usuários</span>
+                        </a>
+                        
+                        </li>
+                        <li >
+                        <a href="#" class="menu-toggle">
+                         
+                            <span>Sair</span>
+                        </a>
+                        
+                        </li>
+                          
+                        </ul>
+                    </div>
+                    <!-- #Menu -->
+                    <!-- Footer -->
+                    <div class="legal">
+                        <div class="copyright">
+                            &copy; 2018 - 2019 <a th:href="@{/}">  Administrador - Controle </a>.
+                        </div>
+                        <div class="version">
+                            <b>Version: </b> 1.0.0
+                        </div>
+                    </div>
+                    <!-- #Footer -->
+                    
+                    <!-- #END# Right Sidebar -->
+                </section>
+
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="block-header">
+                          
+                         
+                            <!-- #END# Basic Examples -->
+                            <!-- Exportable Table -->
+                            <div class="row clearfix">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card">
+                                        <div class="header">
+                                            <h2 align="center">
+                                              Atualizar Cadastro De Viaturas
+                                            </h2>
+                                          
+
+                                        
+
+ <!-- Modal -->
+    
+                                                          <div class="modal-body">
+                                                           <div class="col-md-6 col-md-offset-3" >
+
+                                                           <form th:action="@{/viaturas/salvar}" th:object="${viatura}"
+																class="px-4 py-3 rounded mx-auto" method="POST">
+																<div class="alert alert-success" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+																<div align="center" class="img-logo">
+																	<img src="/imgs/logo-policia.png">
+																</div>
+																<h3 class="mt-2" align="center">Controle IPC</h3>
+																<h5 class="mt-2" align="center">Cadastro De Viaturas</h5>
+																
+																<input type="hidden"  th:field="*{id}" />
+																
+																<div class="form-group">
+																	<label for="modelo">Marca</label> 
+																	<select name="carros" th:field="*{marca}" 
+																		class="form-control">
+																		<option value="Volkswagen">Volkswagen</option>
+																		<option value="Chevrolet">Chevrolet</option>
+																		<option value="Fiat">Fiat</option>
+																		<option value="Ford">Ford</option>
+																		<option value="Hyundai">Hyundai</option>
+																		<option value="Jeep">Jeep</option>
+																	</select>
+																</div>
+																<div class="form-group">
+																	<label for="modelo">Modelo</label> 
+																	<input type="text" th:field="*{modelo}" 
+																		name="modelo" class="form-control" id="modelo"
+																		placeholder="Exemplo: Modelo " maxlength="20"
+																		minlength="2" required
+																		oninvalid="setCustomValidity('Por favor preencha o campo modelo e sem caracteres especiais com mais de 2 Letras')"
+																		onblur="valida_modelo()">
+																</div>
+																<div class="form-group">
+																	<label for="senha">Placa</label> 
+																	<input type="text" th:field="*{placa}" 
+																		name="placa" class="form-control" id="placa"
+																		placeholder="Exemplo: XLO-4321" required
+																		oninvalid="setCustomValidity('Por favor, preencha a placa')">
+																</div>
+																<div class="form-group">
+																	<label for="cor">Cor</label> 
+																	<select name="cor" th:field="*{cor}" 
+																		class="form-control" >
+																		<option value="Branco">Branco</option>
+																		<option value="Preto">Preto</option>
+																		<option value="Prata">Prata</option>
+																		<option value="Azul">Azul</option>
+																		<option value="Amarelo">Amarelo</option>
+																		<option value="Cinza">Cinza</option>
+																		<option value="Vermelho">Vermelho</option>
+																	</select>
+																</div>
+																
+																<div class="form-group">
+																	<label for="prefixo">Prefixo</label>
+																	 <input type="text" th:field="*{prefixo}" 
+																		name="prefixo" class="form-control" id="prefixo"
+																		placeholder="Exemplo: 30-001" required>
+																</div>
+
+																<div class="form-group">
+																	<label for="VTR">Tipo de Viatura</label>
+
+				                                                     <select name="vtr02" class="form-control" id="TipoVtr02" th:field="*{tipoViaturaEnum}" required>
+				                                                        <option  th:each="viatura: ${tipoViaturas}"
+				                                                        th:value="${viatura}" th:text="${viatura.descricao}"></option>
+				                                                        
+				                                                    </select>
+																</div>
+
+																<button type="submit" class="btn btn-primary"
+																	onclick="valida_vtr()">Alterar</button>
+																<button type="reset" class="btn btn-primary">Limpar</button>
+																<div class="dropdown-divider"></div>
+															</form>
+														</div>
+													</div>
+                                    
+                              </div>
+                              
+                          </div>
+                      </div>
+
+<!-- Jquery Core Js -->
+	<script src="/plugins/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core Js -->
+	<script src="/plugins/bootstrap/js/bootstrap.js"></script>
+
+
+	<!-- Slimscroll Plugin Js -->
+	<script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+	<!-- Waves Effect Plugin Js -->
+	<script src="/plugins/node-waves/waves.js"></script>
+
+	<!-- Jquery DataTable Plugin Js -->
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+	<script
+		src="/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+	<script
+		src="/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+
+	<script language="JavaScript"
+		src="/bootstrap/js/validaCadastroVTR.js"></script>
+	<script language="JavaScript" src="/bootstrap/js/jquery-1.8.3.min.js"
+		charset="utf-8"></script>
+	<script language="JavaScript"
+		src="/bootstrap/js/jquery.maskedinput.min.js"></script>
+
+	<!-- Custom Js -->
+	<script src="/bootstrap/js/admin.js"></script>
+	<script src="/plugins/jquery-datatable/jquery.dataTables.js"></script>
+
+	<!-- Demo Js -->
+
+</body>
+
+</html>
