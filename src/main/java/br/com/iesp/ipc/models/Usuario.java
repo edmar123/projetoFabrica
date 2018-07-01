@@ -3,6 +3,8 @@
  */
 package br.com.iesp.ipc.models;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,8 +18,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import br.com.iesp.ipc.enums.TipoUsuarioEnum;
@@ -31,7 +34,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "tab_usuario")
-public class Usuario {
+public class Usuario  implements UserDetails{
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,10 +64,9 @@ public class Usuario {
 	@Column
 	private String numeroCarteiraHabilitacao;
 	
-	@Column(nullable = false)
+	
 	@Temporal(TemporalType.TIMESTAMP)
-	 @DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotNull(message = "Data é uma informação obrigatória.")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date validadeCarteiraHabilitacao;
 	
 	@Column
@@ -80,11 +82,75 @@ public class Usuario {
 	@Column
 	private String ativo;
 	
+	@Column
+	@Transient
+	private String novaSenha;
+	
+	@Column
+	@Transient
+	private String confirmaSenha;
+	
 	
 	
 	@PrePersist
 	public void pre() {
 		this.setSenhaUsuario(new BCryptPasswordEncoder().encode(this.getSenhaUsuario()));
+	}
+
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return (Collection <? extends GrantedAuthority>) Arrays.asList(tipoUsuario.values());
+	}
+
+
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.senhaUsuario;
+	}
+
+
+
+	@Override
+	public String getUsername() {
+		
+		return this.nomeUsuario;
+	}
+
+
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	
 

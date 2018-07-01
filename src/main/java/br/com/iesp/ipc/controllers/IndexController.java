@@ -11,5 +11,10 @@ public class IndexController {
 	public String telaInicial() {
 		return "Tela-Principal";
 	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login/tela-login";
+	}
 
 }

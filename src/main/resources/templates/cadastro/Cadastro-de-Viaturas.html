@@ -99,8 +99,18 @@
 
 							<span>Usuários</span>
 					</a></li>
-					<li><a href="#" class="menu-toggle"> <span>Sair</span>
-					</a></li>
+					  <li >
+	                        <a th:href="@{/usuarios/alterarSenha}" class="menu-toggle">
+	                            <span>Alterar Senha</span>
+	                        </a>
+                        
+                        </li>
+					<li>
+						 <a th:href="@{/login?logout}" class="menu-toggle">
+                         
+                            <span>Sair</span>
+                        </a>
+					</li>
 
 				</ul>
 			</div>

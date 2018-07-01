@@ -3,14 +3,16 @@
  */
 package br.com.iesp.ipc.enums;
 
+import org.springframework.security.core.GrantedAuthority;
+
 /**
  * @author Cayo Hollanda (http://www.github.com/cayohollanda)
  * @project desenvolvimento
  */
-public enum TipoUsuarioEnum {
+public enum TipoUsuarioEnum implements GrantedAuthority {
 
-	COMUM("Usuário comum"),
-    ADMINISTRADOR("Usuário administrador");
+	ROLE_COMUM("ROLE_COMUM"),
+    ROLE_ADMIN("ROLE_ADMIN");
 	
 	private String descricao;
 	
@@ -19,6 +21,16 @@ public enum TipoUsuarioEnum {
 	}
 	
 	public String getDescricao() {
+		return this.descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	@Override
+	public String getAuthority() {
+		// TODO Auto-generated method stub
 		return this.descricao;
 	}
 	

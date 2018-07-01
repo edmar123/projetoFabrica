@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
+<html  xmlns:th="http://www.thymeleaf.org"
+ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
     <meta charset="UTF-8">
@@ -102,25 +103,32 @@
                         </a>
                     </li>
                     
-                    <li >
+                    <li  >
                         <a th:href="@{/viaturas/listar}" class="menu-toggle">
                          
                             <span>Viaturas</span>
                         </a>
                         
                         </li>
-                      <li >
-                        <a th:href="@{usuarios/listar}" class="menu-toggle">
+                      <li sec:authorize="hasAuthority('ROLE_ADMIN')" >
+                        <a th:href="@{/usuarios/listar}" class="menu-toggle">
                          
                             <span>Usuários</span>
                         </a>
                         
                         </li>
+                          <li >
+                          
+	                        <a th:href="@{/usuarios/alterarSenha}" class="menu-toggle">
+	                            <span>Alterar Senha</span>
+	                        </a>
+                        
+                        </li>
+                        
                         <li >
-                        <a href="#" class="menu-toggle">
-                         
-                            <span>Sair</span>
-                        </a>
+	                        <a th:href="@{/login?logout}" class="menu-toggle">
+	                            <span>Sair</span>
+	                        </a>
                         
                         </li>
                         </ul>

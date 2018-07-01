@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alterar senha</title>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/bootstrap/css/alterar-senha.css" rel="stylesheet"/>
+  </head>
+  <body>
+  
+  
+    <div class="row mt-3" >
+      <form th:action="@{/usuarios/salvarSenhaAlterada}"  th:object="${usuario}" class="px-4 py-3 rounded mx-auto" method="POST">
+        <div align="center" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+        
+        
+       	<div class="form-group" align="center" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+       
+          
+        <div align="center" class="img-logo">
+          <img src="/imgs/logo-policia.png">
+        </div>
+        <h3 class="mt-2" align="center">Controle IPC</h3>
+        <h5 class="mt-2 text-center" >Alterar senha</h5>
+        
+        <input type="hidden" name="id" th:field="*{Id}" />
+        
+         <input type="hidden" name="usuario" class="form-control" id="nome" placeholder="usuário" th:field="*{nomeUsuario}" required>
+        
+        <div class="form-group">
+          <label for="senha">Senha atual</label>
+          <input type="password" name="senha"  class="form-control" id="senha" placeholder="senha atual" th:field="*{senhaUsuario}" required>
+        </div>
+        <div class="form-group">
+          <label for="senha">Nova senha</label>
+          <input type="password" name="senhaNova" class="form-control" id="senhaNova" placeholder="nova senha" th:field="*{novaSenha}" required>
+        </div>
+        <div class="form-group">
+          <label for="senha">Confirmar senha</label>
+          <input type="password" name="confirmarSenha" class="form-control" id="confirmarSenha" placeholder="confirmar senha" th:field="*{confirmaSenha}" required>
+        </div>
+        <button type="reset" class="btn btn-light" >Limpar</button>
+        <button type="submit" class="btn btn-primary" onclick="validaLogin()">Entrar</button>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Novo por aqui? Cadastrar-se</a>
+      </form>
+    </div>
+    <!--jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!--Inclui todos os plugins compilados (abaixo), ou inclua arquivos separadados se necessário-->
+    <script language="JavaScript" src="/bootstrap/js/bootstrap.js"></script>
+    <script language="JavaScript" src="/bootstrap/js/alterar-senha.js"></script>
+  </body>
+</html>

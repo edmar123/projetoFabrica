@@ -45,5 +45,9 @@ public class UsuarioService implements Serializable {
 		return this.repository.findByNomeUsuario(nome);
 	}
 	
+	public void updateSennha(String novaSenha, Long id) {
+		this.repository.setFixedSenhaUsuarioFor(novaSenha, id);
+	}
+	
 	
 }
