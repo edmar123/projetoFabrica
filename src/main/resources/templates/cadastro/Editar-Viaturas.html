@@ -93,14 +93,14 @@
                     </li>
                     
                     <li class="active" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a th:href="@{/viaturas/cadastrar}" class="menu-toggle">
+                        <a th:href="@{/viaturas/listar}" class="menu-toggle">
                          
                             <span>Viaturas</span>
                         </a>
                         
                         </li>
                       <li sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a href="Cadastro-de-Usuarios.html" class="menu-toggle">
+                        <a th:href="@{/usuarios/listar}" class="menu-toggle">
                          
                             <span>Usuários</span>
                         </a>
