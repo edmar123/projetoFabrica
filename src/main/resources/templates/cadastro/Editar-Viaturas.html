@@ -219,7 +219,14 @@
 																		name="prefixo" class="form-control" id="prefixo"
 																		placeholder="Exemplo: 30-001" required>
 																</div>
-
+																	<div class="form-group">
+																		<label for="TipoViatura">Tipo de Viatura</label> 
+																			<select name="cor" th:field="*{tipoViaturaEnum}" class="form-control" >
+																					<option th:each="viatura: ${tipoViaturas}" 
+																					th:value="${viatura}" th:text="${viatura.descricao}"></option>
+																							
+																				</select>
+																	 </div>
 						
 
 																<button type="submit" class="btn btn-primary"
