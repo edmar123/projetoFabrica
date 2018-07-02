@@ -92,14 +92,14 @@
                         </a>
                     </li>
                     
-                    <li class="active">
+                    <li class="active" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a th:href="@{/viaturas/cadastrar}" class="menu-toggle">
                          
                             <span>Viaturas</span>
                         </a>
                         
                         </li>
-                      <li >
+                      <li sec:authorize="hasRole('ROLE_ADMIN')">
                         <a href="Cadastro-de-Usuarios.html" class="menu-toggle">
                          
                             <span>Usuários</span>
@@ -220,15 +220,7 @@
 																		placeholder="Exemplo: 30-001" required>
 																</div>
 
-																<div class="form-group">
-																	<label for="VTR">Tipo de Viatura</label>
-
-				                                                     <select name="vtr02" class="form-control" id="TipoVtr02" th:field="*{tipoViaturaEnum}" required>
-				                                                        <option  th:each="viatura: ${tipoViaturas}"
-				                                                        th:value="${viatura}" th:text="${viatura.descricao}"></option>
-				                                                        
-				                                                    </select>
-																</div>
+						
 
 																<button type="submit" class="btn btn-primary"
 																	onclick="valida_vtr()">Alterar</button>

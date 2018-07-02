@@ -14,24 +14,27 @@ public enum TipoUsuarioEnum implements GrantedAuthority {
 	ROLE_COMUM("ROLE_COMUM"),
     ROLE_ADMIN("ROLE_ADMIN");
 	
-	private String descricao;
+	private String role;
 	
-	TipoUsuarioEnum(String descricao){
-		this.descricao = descricao;
+	TipoUsuarioEnum(String role){
+		this.role = role;
 	}
 	
-	public String getDescricao() {
-		return this.descricao;
+	
+	public String getRole() {
+		return role;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+
+	public void setRole(String role) {
+		this.role = role;
 	}
+
 
 	@Override
 	public String getAuthority() {
 		// TODO Auto-generated method stub
-		return this.descricao;
+		return this.role;
 	}
 	
 }

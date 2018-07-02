@@ -1,7 +1,7 @@
 package br.com.iesp.ipc.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,8 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -23,7 +22,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf()
 			.disable()
 				.authorizeRequests()
-				.antMatchers("/usuarios/listar").hasAuthority("ROLE_ADMIN")
 				.antMatchers("/bootstrap/css/*").permitAll()
 				.antMatchers("/bootstrap/js/*").permitAll()
 				.antMatchers("/imgs/*").permitAll()

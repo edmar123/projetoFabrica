@@ -6,12 +6,16 @@ package br.com.iesp.ipc.models;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -22,6 +26,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 import br.com.iesp.ipc.enums.TipoUsuarioEnum;
 import lombok.Data;
@@ -72,8 +77,12 @@ public class Usuario  implements UserDetails{
 	@Column
 	private String tipoCNH;
 	
-	@Column
-	private TipoUsuarioEnum tipoUsuario;
+	@ManyToMany
+	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(
+		name = "usuario_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(
+		name = "role_id", referencedColumnName="id"))
+	private List<Role> roles;
+
 	
 	@Column(unique=true)
 	@Email
@@ -102,7 +111,7 @@ public class Usuario  implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return (Collection <? extends GrantedAuthority>) Arrays.asList(tipoUsuario.values());
+		return (Collection <? extends GrantedAuthority>) this.roles ;
 	}
 
 

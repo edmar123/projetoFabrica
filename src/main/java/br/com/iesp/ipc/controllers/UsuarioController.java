@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 import br.com.iesp.ipc.enums.TipoUsuarioEnum;
 import br.com.iesp.ipc.models.Usuario;
 import br.com.iesp.ipc.services.UsuarioService;
@@ -48,7 +47,7 @@ public class UsuarioController {
 	public ModelAndView enviarParaTelaDeCadastro(Usuario usuario) {
 		ModelAndView mv = new ModelAndView(CADASTRO_USUARIOS);
 		mv.addObject("usuario", usuario);
-		mv.addObject("tipoUsuarios", Arrays.asList(TipoUsuarioEnum.values()));
+		
 		
 		return mv;
 	}
@@ -58,7 +57,7 @@ public class UsuarioController {
 		ModelAndView mv = new ModelAndView("cadastro/Editar-Usuarios");
 		
 		mv.addObject("usuario", usuario);
-		mv.addObject("tipoUsuarios", Arrays.asList(TipoUsuarioEnum.values()));
+		
 		
 		return mv;
 	}
@@ -78,7 +77,7 @@ public class UsuarioController {
 		
 		return listar();
 	}
-	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+	
 	@GetMapping("listar")
 	public ModelAndView listar() {
 		ModelAndView mv = new ModelAndView(CADASTRO_USUARIOS);
@@ -86,7 +85,6 @@ public class UsuarioController {
 		List<Usuario> usuarios = this.usuarioService.findAll();
 		
 		mv.addObject("usuario", usuario);
-		mv.addObject("tipoUsuarios", Arrays.asList(TipoUsuarioEnum.values()));
 		mv.addObject("listaUsuarios", usuarios);
 		return mv;
 	}
@@ -120,8 +118,10 @@ public class UsuarioController {
 	
 	//salva alteracao de senha de usuario logado
 	@PostMapping("salvarSenhaAlterada")
-	public ModelAndView salvar(@Valid Usuario usuario, RedirectAttributes attributes) {
-		ModelAndView mv = new  ModelAndView("paginas/usuarios/alterar-Senha");
+	public ModelAndView salvar(@Valid Usuario usuario , RedirectAttributes attributes ) {
+		ModelAndView mv = new  ModelAndView("redirect:/usuarios/alterarSenha");
+		
+
 		Usuario user = usuarioService.getOne(usuario.getId());
 		
 		if (BCrypt.checkpw(usuario.getSenhaUsuario(), user.getSenhaUsuario())) {
@@ -131,14 +131,14 @@ public class UsuarioController {
 					usuario.setSenhaUsuario(new BCryptPasswordEncoder().encode(usuario.getSenhaUsuario()));
 					//repository.save(usuario);
 					usuarioService.updateSennha(usuario.getSenhaUsuario(), user.getId());
-					attributes.addFlashAttribute("mensagem", "senha alterada com sucesso");
+					attributes.addFlashAttribute("mensagemSucesso", "senha alterada com sucesso");
 	
 					return listar();
 				}
 			}
 
 			
-			attributes.addFlashAttribute("mensagem", "insira uma nova senha");
+			attributes.addFlashAttribute("mensagem", "digite uma nova senha");
 
 			return mv;
 		}

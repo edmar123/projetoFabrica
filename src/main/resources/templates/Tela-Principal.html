@@ -103,14 +103,14 @@
                         </a>
                     </li>
                     
-                    <li  >
+                    <li  sec:authorize="hasRole('ROLE_ADMIN')">
                         <a th:href="@{/viaturas/listar}" class="menu-toggle">
                          
                             <span>Viaturas</span>
                         </a>
                         
                         </li>
-                      <li sec:authorize="hasAuthority('ROLE_ADMIN')" >
+                      <li sec:authorize="hasRole('ROLE_ADMIN')" >
                         <a th:href="@{/usuarios/listar}" class="menu-toggle">
                          
                             <span>Usuários</span>
@@ -129,7 +129,7 @@
 	                        <a th:href="@{/login?logout}" class="menu-toggle">
 	                            <span>Sair</span>
 	                        </a>
-                        
+                        	
                         </li>
                         </ul>
                     </div>

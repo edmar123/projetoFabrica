@@ -92,13 +92,16 @@
 					<li><a th:href="@{/}" > <span>Home</span>
 					</a></li>
 
-					<li class="active"><a th:href="@{/viaturas/listar}"
-						class="menu-toggle"> <span>Viaturas</span>
-					</a></li>
-					<li><a th:href="@{/usuarios/listar}" class="menu-toggle">
-
-							<span>Usuários</span>
-					</a></li>
+					<li class="active" sec:authorize="hasRole('ROLE_ADMIN')">
+						<a th:href="@{/viaturas/listar}"
+							class="menu-toggle"> <span>Viaturas</span>
+						</a>
+					</li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')">
+					<a th:href="@{/usuarios/listar}" class="menu-toggle">
+						<span>Usuários</span>
+						</a>
+					</li>
 					  <li >
 	                        <a th:href="@{/usuarios/alterarSenha}" class="menu-toggle">
 	                            <span>Alterar Senha</span>
@@ -218,16 +221,7 @@
 																		placeholder="Exemplo: 30-001" required>
 																</div>
 
-																<div class="form-group">
-																	<label for="VTR">Tipo de Viatura</label>
-
-				                                                     <select name="vtr02" class="form-control" id="TipoVtr02" th:field="*{tipoViaturaEnum}" required>
-				                                                        <option  th:each="viatura: ${tipoViaturas}"
-				                                                        th:value="${viatura}" th:text="${viatura.descricao}"></option>
-				                                                        
-				                                                    </select>
-																</div>
-
+				
 																<button type="submit" class="btn btn-primary"
 																	onclick="valida_vtr()">Cadastrar</button>
 																<button type="reset" class="btn btn-primary">Limpar</button>
@@ -359,15 +353,7 @@
 																					required>
 																			</div>
 
-																			<div class="form-group">
-																				
-																			<label for="VTR">Tipo de Viatura</label>
-							                                                     <select name="vtr02" class="form-control" id="TipoVtr02" th:field="*{tipoViaturaEnum}" required>
-							                                                        <option  th:each="viatura: ${tipoViaturas}"
-							                                                        th:value="${viatura}" th:text="${viatura.descricao}">Viatura</option>
-							                                                        
-							                                                    </select>
-																			</div>
+																		
 
 																			<button type="submit" class="btn btn-primary"
 																				onclick="valida_vtr02()">Salvar</button>

@@ -11,14 +11,11 @@
   </head>
   <body>
   
-  
     <div class="row mt-3" >
       <form th:action="@{/usuarios/salvarSenhaAlterada}"  th:object="${usuario}" class="px-4 py-3 rounded mx-auto" method="POST">
-        <div align="center" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
-        
-        
-       	<div class="form-group" align="center" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
-       
+        <div align="center" class="alert alert-danger" th:text="${mensagem}" th:if="${not #strings.isEmpty(mensagem)}"></div>
+        <div align="center" class="alert alert-success" th:text="${mensagemSucesso}" th:if="${not #strings.isEmpty(mensagemSucesso)}"></div>
+          
           
         <div align="center" class="img-logo">
           <img src="/imgs/logo-policia.png">
@@ -46,8 +43,10 @@
         <button type="submit" class="btn btn-primary" onclick="validaLogin()">Entrar</button>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#">Novo por aqui? Cadastrar-se</a>
+        
       </form>
     </div>
+    
     <!--jQuery (obrigatório para plugins JavaScript do Bootstrap) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!--Inclui todos os plugins compilados (abaixo), ou inclua arquivos separadados se necessário-->
