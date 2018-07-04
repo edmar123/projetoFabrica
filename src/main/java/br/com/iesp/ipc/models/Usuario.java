@@ -42,7 +42,7 @@ import lombok.Data;
 public class Usuario  implements UserDetails{
 	
 	@Id 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue
 	private Long id;
 	
 	@Column(unique=true)
