@@ -22,7 +22,7 @@ public class Viatura {
 	
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 
 	@Column()
